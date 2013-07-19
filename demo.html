@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box{position:fixed;right:0;bottom:0;width:30px;height:100px;background:orange;}
+	</style>
+</head>
+<body>
+	<div class="box">1234</div>
+
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".box").addClass("JQUI-FloBarDown");
+			if(navigator.userAgent.indexOf("MSIE 6")!=-1){
+				alert(111)
+			$("head").append("<style type='text/css'>.JQUI-FloBarDown{position:absolute;top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight));}</style>");
+			}
+		});
+	</script>
+</body>
+</html>

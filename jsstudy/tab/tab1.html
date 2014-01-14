@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab1</title>
+	<style type="text/css">
+		body,ul,li{margin:0;padding:0;}
+		ul{list-style:none;}
+		.box{position:relative;width:200px;height:100px;margin:0 auto;border:5px solid #ccc;overflow:-hidden;}
+		.box ul{position:absolute;left:0;top:0;z-index:-1;}
+		.box li{float:left;display:inline;width:200px;height:100px;}
+		.li1{background:red;}
+		.li2{background:black;}
+		.li3{background:orange;}
+
+		.ctrl{position:absolute;left:0;bottom:0;width:100%;padding:20px 0;text-align:center;}
+	</style>
+</head>
+<body>
+	<div id="box" class="box">
+		<ul>
+			<li class="li1"></li>
+			<li class="li2"></li>
+			<li class="li3"></li>
+		</ul>
+		<div class="ctrl" id="ctrl">
+			<a href="javascript:;">1</a>
+			<a href="javascript:;">2</a>
+			<a href="javascript:;">3</a>
+		</div>
+	</div>
+
+	<script>
+		var oBox = document.getElementById("box");
+		var oUl = oBox.getElementsByTagName("ul")[0];
+		var oLi = oUl.getElementsByTagName("li");
+
+		var oCtrl = document.getElementById("ctrl");
+		var oA = oCtrl.getElementsByTagName("a");
+
+		var timer = null;
+		var vIndex = 0;
+
+		oUl.style.width = oLi[0].offsetWidth * oLi.length + "px";
+
+		for(i=0;i<oLi.length;i++){
+			oA[i].index = i;
+			oA[i].onclick = function(){
+				// oUl.style.left = -oLi[0].offsetWidth * this.index + "px";
+				var t = -oLi[0].offsetWidth * this.index;
+				move(oUl,t);
+			}
+		}
+
+		setInterval(function(){
+			if(vIndex == oLi.length - 1){
+				vIndex = 0;
+			}else{
+				vIndex++;
+			}
+			var t = -oLi[0].offsetWidth * vIndex;
+			move(oUl,t);
+		},3000);
+
+		function move(obj,iTarget){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var iSpeed = (iTarget-obj.offsetLeft)/8;
+				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+				if(obj.offsetLeft == iTarget){
+					clearInterval(timer);
+				}
+				obj.style.left = obj.offsetLeft + iSpeed + "px";
+			},30);
+		}
+
+
+	</script>
+</body>
+</html>

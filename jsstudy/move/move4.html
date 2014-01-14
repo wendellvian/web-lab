@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move2</title>
+	<style type="text/css">
+	#box{position:absolute;left:0;top:0;width:100px;height:200px;background:red;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+	<script>
+		var oBox = document.getElementById("box");
+		var timer = null;
+		function sTartMove(iTarget){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var iSpeed = (iTarget-oBox.offsetWidth)/8;
+				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+				if(oBox.offsetWidth == iTarget){
+					clearInterval(timer);
+				}else{
+					oBox.style.width = oBox.offsetWidth + iSpeed + "px";
+				}
+			},30);
+		}
+		oBox.onmouseover=function(){
+			sTartMove(200);
+		}
+		oBox.onmouseout=function(){
+			sTartMove(100);
+		}
+	</script>
+</body>
+</html>

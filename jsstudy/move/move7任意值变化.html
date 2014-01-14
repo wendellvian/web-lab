@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move2</title>
+	<style type="text/css">
+	div{width:100px;height:100px;margin-top:20px;background:red;border:5px solid #ddd;}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div class="div1">不错哦</div>
+
+	<script>
+		var aDiv = document.getElementsByTagName("div");
+		for(i=0;i<aDiv.length;i++){
+			aDiv[i].timer = null;	// 给每个元素都加个定时器，解决多元素运动还没运动完就清掉定时器的bug
+			aDiv[0].onclick = function(){
+				startMove(this,"width",300);
+			}
+			aDiv[1].onclick = function(){
+				startMove(this,"height",300);
+			}
+			aDiv[2].onclick = function(){
+				startMove(this,"fontSize",300);
+			}
+		}
+
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+
+		function startMove(obj,attr,iTarget){
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var iCur = parseInt(getStyle(obj,attr));
+				var iSpeed = (iTarget-iCur)/8;
+				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+				if(iCur == iTarget){
+					clearInterval(obj.timer);
+				}else{
+					obj.style[attr] = iCur + iSpeed + "px";
+				}
+			},30);
+		}
+	</script>
+</body>
+</html>

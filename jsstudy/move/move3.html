@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move2</title>
+	<style type="text/css">
+	body{height:2000px;margin:0;}
+	#box{position:absolute;left:0;width:100px;height:200px;background:red;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+	<script>
+	var oBox = document.getElementById("box");
+	var timer = null;
+
+	window.onscroll = function(){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		// oBox.style.top = scrollTop + (document.documentElement.clientHeight - oBox.offsetHeight) / 2 + "px";
+		var t = scrollTop + (document.documentElement.clientHeight - oBox.offsetHeight) / 2;
+		move(parseInt(t));
+	}
+
+
+	function move(iTarget){
+		clearInterval(timer);
+		timer = setInterval(function(){
+
+			var iSpeed = (iTarget - oBox.offsetTop) / 8;
+			iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+			if(oBox.offsetTop == iTarget){
+				clearInterval(timer);
+			}else{
+				oBox.style.top = oBox.offsetTop + iSpeed + "px";
+			}
+		},30);
+	}
+	</script>
+</body>
+</html>

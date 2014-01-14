@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move1</title>
+	<style type="text/css">
+	#box{position:absolute;left:-100px;top:100px;width:100px;height:200px;background:red;}
+	#box span{position:absolute;left:100px;top:0;width:20px;background:orange;}
+	</style>
+</head>
+<body>
+	<div id="box"><span>摸我</span></div>
+
+	<script>
+	var oBox = document.getElementById("box");
+	var timer = null;
+
+	oBox.onmouseover = function(){
+		move(0);
+	}
+	oBox.onmouseout = function(){
+		move(-100);
+	}
+
+	function move(iTarget){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			// var iSpeed = 0;
+			// if(oBox.offsetLeft < iTarget){
+			// 	iSpeed = 10;
+			// }else{
+			// 	iSpeed = -10;
+			// }
+
+			// 缓冲运动 begin
+			var iSpeed = (iTarget - oBox.offsetLeft)/8;
+			iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+			console.log(iSpeed);
+			// 缓冲运动 end
+
+			if(oBox.offsetLeft == iTarget){
+				clearInterval(timer);
+			}else{
+				oBox.style.left = oBox.offsetLeft + iSpeed +"px";
+			}
+		},30);
+	}
+	</script>
+</body>
+</html>

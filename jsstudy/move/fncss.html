@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	ul{margin:0;padding:0;list-style:none;}
+	.box{position:relative;width:200px;height:200px;overflow:-hidden;}
+	.box ul{position:absolute;left:0;top:0;}
+	.box li{float:left;display:inline;width:200px;height:200px;}
+	.li1{background:red;}
+	.li2{background:orange;}
+	.li3{background:black;}
+
+	.ctrl{position:absolute;left:0;bottom:0;width:100%;padding:20px 0;text-align:center;}
+	.ctrl span{padding:5px;background:gray;cursor:pointer;}
+	</style>
+</head>
+<body>
+	<div id="box" class="box">
+		<ul>
+			<li class="li1"></li>
+			<li class="li2"></li>
+			<li class="li3"></li>
+		</ul>
+		<div class="ctrl">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+		</div>
+	</div>
+
+
+	<script src="move.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var oBox = document.getElementById("box");
+		var oUl = oBox.getElementsByTagName("ul")[0];
+
+
+		function getClass(){
+			var aLi = document.getElementsByTagName("*");
+			var attr
+		}
+		getClass();
+	</script>
+</body>
+</html>

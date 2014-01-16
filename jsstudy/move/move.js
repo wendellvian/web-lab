@@ -16,7 +16,18 @@ function css(obj, attr, value){
 	}
 }
 
-
+// 获取元素类
+function getByClass(oParent, sClass){
+	var aEle = oParent.getElementsByTagName("*");
+	var i = 0;
+	var aResult = [];
+	for(i=0;i<aEle.length;i++){
+		if(aEle[i].className == sClass){
+			aResult.push(aEle[i]);
+		}
+	}
+	return aResult;
+}
 
 // 运动框架
 function startMove(obj, attr, iTarget){

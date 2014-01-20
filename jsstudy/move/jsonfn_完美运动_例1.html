@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>document</title>
+	<style>
+		#box{width:100px;height:100px;background:red;opacity:.3;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+	<script src="move_完美运动.js" type="text/javascript"></script>
+	<script>
+		// for...in 与 普通for循环的区别
+		// 1.for...in没那么灵活，不能从某个点循环，只能全部循环
+		// 2.json的循环只能用for...in
+		// 3.json循环的下标是字符串，数组的为数字
+		// 4.json是大括号，数组是中括号
+		function setStyle(obj, json){
+			var attr = ""; // 相当于数组的var i = 0;
+			for(attr in json){
+				obj.style[attr] = json[attr];
+			}
+		}
+		var oBox = document.getElementById("box");
+		// setStyle(oBox, {width:"200px", height:"200px", background:"green", border:"5px solid red"});
+		oBox.onclick = function (){
+			startMove(oBox, {width:102, height:200, opacity:100}, function(){
+				css(oBox, "backgroundColor", "green");	
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move9链式运动</title>
+	<style type="text/css">
+	#box{width:100px;height:100px;background:red;opacity:.3;filter:alpha(opacity=30);}
+	</style>
+</head>
+<body>
+	<div id="box"><span>点我</span></div>
+
+	<script src="move_链式运动.js" type="text/javascript"></script>
+	<script>
+		var oBox = document.getElementById("box");
+		oBox.onclick = function (){
+			startMove(oBox, "width", 300, function(){
+				startMove(oBox, "height", 300, function(){
+					startMove(oBox, "opacity", 100);
+				});
+			});
+		}
+	</script>
+</body>
+</html>

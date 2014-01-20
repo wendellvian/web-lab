@@ -30,7 +30,7 @@ function getByClass(oParent, sClass){
 }
 
 // 运动框架
-function startMove(obj, attr, iTarget){
+function startMove(obj, attr, iTarget, fn){
 	clearInterval(obj.timer);
 	obj.timer = setInterval(function(){
 		var iCur = 0;
@@ -43,12 +43,14 @@ function startMove(obj, attr, iTarget){
 		iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
 		if(iCur == iTarget){
 			clearInterval(obj.timer);
+			if(fn){
+				fn();
+			}
 		}else{
 			if(attr == "opacity"){
 				obj.style.filter = "alpha(opacity="+(iCur+iSpeed)+")";
 				obj.style.opacity = (iCur+iSpeed)/100;
-			}
-			else{
+			}else{
 				obj.style[attr] = iCur + iSpeed + "px";
 			}
 		}

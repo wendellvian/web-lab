@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this小例</title>
+	<script>
+	// 解决this问题，通常方法再套一层
+		function Aaa(){
+
+			var _this = this; //再套一层
+			this.a = 12;
+
+			setInterval(function (){ //再套一层
+				_this.show();
+			},100);
+		}
+
+		Aaa.prototype.show = function (){
+			console.log(this.a);
+		}
+
+		var obj = new Aaa();
+
+		// obj.show();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

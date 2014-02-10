@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第一个面向对象程序1</title>
+	<script>
+		var obj = new Object();
+
+		obj.name = "wendell";
+		obj.sex = "男";
+		
+		obj.showName = function (){
+			console.log("我的名字："+this.name);
+		}
+		obj.showSex = function (){
+			console.log("我的性别："+this.sex);
+		}
+
+		obj.showName();
+		obj.showSex();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造对象--混合法</title>
+	<script>
+		function Person(name, sex){
+			this.name = name;
+			this.sex = sex;
+		}
+
+		Person.prototype.showName = function (){
+			console.log(this.name);
+		}
+		Person.prototype.showSex = function (){
+			console.log(this.sex);
+		}
+
+		var p = new Person("wendell", "男");
+
+		p.showName();
+		p.showSex();
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

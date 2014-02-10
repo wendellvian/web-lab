@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工厂方式</title>
+	<script>
+	//用工厂方式构造对象
+		function createPerson(name, sex){	// 构造函数
+
+			// 1.原料
+			var obj = new Object();
+
+			// 2.加工
+			obj.name = name;
+			obj.sex = sex;
+			
+			obj.showName = function (){
+				console.log("我的名字："+this.name);
+			}
+			obj.showSex = function (){
+				console.log("我的性别："+this.sex);
+			}
+
+			// 3.出厂
+			return obj;
+		}
+
+		var p1 = createPerson("wendell", "男");
+		var p2 = createPerson("vian", "女");
+
+		// console.log(p1.showName == p2.showName);
+
+		p1.showName();
+		p1.showSex();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

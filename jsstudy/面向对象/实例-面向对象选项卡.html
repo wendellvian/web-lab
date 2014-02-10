@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象选项卡</title>
+	<style type="text/css">
+		body,ul,li{margin:0;padding:0;}
+		ul{list-style:none;}
+
+		.box{border-right:1px solid #ddd;}
+		.box ul{float:left;}
+		.box li{width:20px;height:30px;border-bottom:1px solid #ddd;line-height:30px;}
+		.box li.on{background:orange;color:#fff;}
+
+		.con{float:left;width:100px;height:93px;background:#f4f4f4;}
+		.con li{width:auto;height:93px;border:none;line-height:auto;}
+
+	</style>
+
+	<script>
+	//改写：1.前提：所有东西都在onload里。2.改写：不能有函数嵌套，可以有全局变量。3.onload改成构造函数；全局变量改成属性；函数改成方法。4.this 改错
+
+		window.onload = function (){
+			var oTab = new tabSwitch("box");
+			var oTab1 = new tabSwitch("box1");
+		}
+		
+		function tabSwitch(id){
+			var oBox = document.getElementById(id);
+			var oul1 = oBox.getElementsByTagName("ul")[0];
+			var oul2 = oBox.getElementsByTagName("ul")[1];
+			this.oBoxli = oul1.getElementsByTagName("li");
+			this.oConli = oul2.getElementsByTagName("li");
+
+			var _this = this;
+
+			for(i=0;i<this.oBoxli.length;i++){
+				this.oBoxli[i].index = i;
+				this.oBoxli[i].onclick = function (){
+					_this.tab(this);
+				}
+			}
+		}
+
+		tabSwitch.prototype.tab = function (oBtn){
+			for(i=0;i<this.oBoxli.length;i++){
+				this.oBoxli[i].className = "";
+				this.oConli[i].style.display = "none";
+			}
+			oBtn.className = "on";
+			this.oConli[oBtn.index].style.display = "block";
+		}
+	</script>
+</head>
+<body>
+	<div id="box" class="box">
+		<ul>
+			<li class="on">1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div class="con">
+			<ul>
+				<li>内容1</li>
+				<li style="display:none;">内容2</li>
+				<li style="display:none;">内容3</li>
+			</ul>
+		</div>
+	</div>
+	<div id="box1" class="box">
+		<ul>
+			<li class="on">11</li>
+			<li>22</li>
+			<li>33</li>
+		</ul>
+		<div class="con">
+			<ul>
+				<li>内容11</li>
+				<li style="display:none;">内容22</li>
+				<li style="display:none;">内容33</li>
+			</ul>
+		</div>
+	</div>
+
+
+</body>
+</html>

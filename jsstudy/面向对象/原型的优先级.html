@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型的优先级</title>
+	<script>
+		Array.prototype.a = 12;	// prototype相当于css中的class
+
+		var arr = [1,2,3];
+
+		console.log(arr.a);	// 12
+
+		arr.a = 5;	// 相当于行间样式 > 优先级高于prototype
+
+		console.log(arr.a);	// 5
+
+		delete arr.a;	// 相当于把行间样式干掉
+
+		console.log(arr.a);	// 12
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

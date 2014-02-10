@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prototype (原型)</title>
+	<script>
+		String.prototype.trim = function (){
+			return this.replace(/^\s+|\s+$/, "");
+		}
+		var str = " a b c ";
+
+		console.log("("+str.trim()+")");
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

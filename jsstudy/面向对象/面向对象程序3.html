@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>new</title>
+	<script>
+	// this 当前的方法属于谁
+	// 函数前面有new的时候，this失效
+	//用工厂方式构造对象
+		function createPerson(name, sex){	// 构造函数
+
+			// 1.原料
+			// var obj = new Object();
+
+			// 2.加工
+
+			// 假想的系统内部的工作流程
+			// var this = new Object();
+			this.name = name;
+			this.sex = sex;
+			
+			this.showName = function (){
+				console.log("我的名字："+this.name);
+			}
+			this.showSex = function (){
+				console.log("我的性别："+this.sex);
+			}
+
+			// 假想的系统内部的工作流程
+			// return this
+
+			// 3.出厂
+			// return obj;
+		}
+
+		var p1 = new createPerson("wendell", "男");
+		var p2 = new createPerson("vian", "女");
+
+
+		p1.showName();
+		p1.showSex();
+
+
+
+		// 函数前加new的变化
+		function show(){
+			console.log(this);
+		}
+		show()	// window
+		new show();	// 新创建的对象
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

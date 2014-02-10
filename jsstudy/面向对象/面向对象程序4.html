@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prototype (原型)</title>
+	<script>
+	// prototype (原型)
+		var arr1 = new Array(1,2,3,4);
+		var arr2 = new Array(11,22,32,42);
+
+		// arr1.sum = function (){
+		Array.prototype.sum = function (){
+			var result = 0;
+			var i = 0;
+
+			for(i=0;i<this.length;i++){
+				result += this[i];
+			}
+
+			return result;
+		}
+
+		document.write(arr1.sum()+"<br />");
+		document.write(arr2.sum());
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

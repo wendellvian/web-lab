@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>面向对象拖拽</title>
+	<style type="text/css">
+		#div1{width:100px;height:100px;background:orange;position:absolute;}
+		#div2{width:100px;height:100px;background:yellow;position:absolute;}
+	</style>
+	<script type="text/javascript">
+	// 用到的事件
+	// onmousedown 存储距离
+	// onmousemove 根据距离，计算div最新的位置
+	// onmouseup
+
+	window.onload = function (){
+		new drag("div1");
+		new drag("div2");
+	}
+
+	function drag(id)
+	{
+		var _this = this;
+
+		this.disX = 0;
+		this.disY = 0;
+		this.oDiv = document.getElementById(id);
+
+		this.oDiv.onmousedown = function (){
+			_this.fnDown();
+		};
+
+	}
+
+	drag.prototype.fnDown = function (ev)
+	{
+		var _this = this;
+		var oEvent = ev || event;
+
+		this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+		this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+
+		document.onmousemove = function (){
+			_this.fnMove();
+		};
+		document.onmouseup = function (){
+			_this.fnUp();
+		};
+
+		// return false;
+	};
+
+	drag.prototype.fnMove = function (ev)
+	{
+		var oEvent = ev || event;
+		var x = oEvent.clientX - this.disX;
+		var y = oEvent.clientY - this.disY;
+
+		if(x < 0 && y < 0){
+			x = 0;
+			y = 0;
+		}else if(x > document.documentElement.clientWidth - this.oDiv.offsetWidth && y > document.documentElement.clientHeight - this.oDiv.offsetHeight){
+			x = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+			y = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+		}else if(x > document.documentElement.clientWidth - this.oDiv.offsetWidth && y < 0){
+			x = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+			y = 0;
+		}else if(x < 0 && y > document.documentElement.clientHeight - this.oDiv.offsetHeight){
+			x = 0;
+			y = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+		}else if(x < 0){
+			x = 0;
+		}else if(x > document.documentElement.clientWidth - this.oDiv.offsetWidth){
+			x = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+		}else if(y < 0){
+			y = 0;
+		}else if(y > document.documentElement.clientHeight - this.oDiv.offsetHeight){
+			y = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+		}
+
+		this.oDiv.style.left = x + "px";
+		this.oDiv.style.top = y + "px";
+	};
+
+	drag.prototype.fnUp = function ()
+	{
+		document.onmousemove = null;
+		document.onmouseup = null;
+	};
+
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>

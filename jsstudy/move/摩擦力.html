@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{position:absolute;width:100px;height:100px;background:orange;}
+	</style>
+</head>
+<body>
+	<input id="btn" type="button" value="开始运动" />
+	<div id="box" class="box"></div>
+
+	<script src="move_完美运动.js"></script>
+	<script>
+		var oBtn = document.getElementById("btn");
+		var oBox = document.getElementById("box");
+		var iSpeed = 20;
+
+
+		oBtn.onclick = function (){
+			setInterval(function (){
+				iSpeed*=0.95;
+				console.log(iSpeed);
+				oBox.style.left = oBox.offsetLeft + iSpeed + "px";
+			},30);
+			
+		}
+	</script>
+</body>
+</html>

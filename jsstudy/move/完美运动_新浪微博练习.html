@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;list-style:none;}
+	.box{width:300px;height:300px;margin:20px auto;border:1px solid #ccc;}
+	.box li{padding:5px;border-bottom:1px dotted #ddd;overflow:hidden;filter:alpha(opacity=0);opacity:0;}
+	</style>
+</head>
+<body>
+	<textarea name="" id="txt" cols="30" rows="10"></textarea>
+	<input id="btn" type="button" value="发布" />
+	<div id="box" class="box">
+		<ul id="ul">
+		</ul>
+	</div>
+
+	<script src="move_完美运动.js"></script>
+	<script>
+		var oUl = document.getElementById("ul");
+		var oBtn = document.getElementById("btn");
+		var oTxt = document.getElementById("txt");
+
+		oBtn.onclick = function (){
+			var oLi = document.createElement("li");
+			var aLi = oUl.getElementsByTagName("li");
+
+			oLi.innerHTML = oTxt.value;
+			oTxt.value = "";
+
+			if(aLi.length){
+				oUl.insertBefore(oLi, aLi[0]);
+			}else{
+				oUl.appendChild(oLi);
+			}
+
+			var iHeight = oLi.offsetHeight;
+			oLi.style.height = 0;
+
+			startMove(oLi, {height:iHeight-10}, function(){
+				startMove(oLi, {opacity:100});
+			});
+
+		}
+	</script>
+</body>
+</html>

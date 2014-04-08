@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var A = function(e, o){
+			
+		}
+		
+		A.prototype.click = function(){
+			console.log(1111);
+		}
+
+		A.B = function(){
+			A.call(this);
+		}
+
+		A.B.prototype = A.prototype;
+
+		var C = new A.B();
+		C.click();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

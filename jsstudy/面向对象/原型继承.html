@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function person(name, sex){
+		    this.name = name;
+		    this.sex = sex;
+		}
+		person.prototype.showName = function (){
+		    console.log(this.name);
+		}
+		person.prototype.showSex = function (){
+		    console.log(this.sex);
+		}
+
+
+
+		function worker(name, sex, job){
+		    person.call(this, name, sex);
+		    this.job = job;
+		}
+		worker.prototype = person.prototype;
+		worker.prototype.showJob = function (){
+		    console.log(this.job);
+		}
+		var ow = new person("wendell1", "boy1");
+		ow.showName();
+		var ow1 = new worker("vian1", "girl1", "IT");
+		ow1.showName();
+		ow1.showSex();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

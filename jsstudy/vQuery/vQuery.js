@@ -1,6 +1,7 @@
 //------------------事件绑定方法
 function myAddEvent(obj, sEv, fn){
 	if(obj.attachEvent){
+		// obj.attachEvent("on"+sEv, fn);
 		obj.attachEvent("on"+sEv, function (){
 			fn.call(obj);
 		});
@@ -103,9 +104,34 @@ vQuery.prototype.css = function (attr, value){
 		return getStyle(this.elements[0], attr);
 	}
 }
+//--------------------attr方法
+vQuery.prototype.attr = function (attr, value){
+	if(arguments.length == 2){                    // 设置
+		var i = 0;
+		for(i=0;i<this.elements.length;i++){
+			this.elements[i][attr] = value;
+		}
+	}else{
+		return this.elements[0][attr];
+	}
+}
 //-----------------toggle方法
-vQuery.prototype.toggle = function (fn1, fn2){
-	
+vQuery.prototype.toggle = function (){
+	// var count = 0;
+	var i = 0;
+	var _arguments = arguments;
+
+	for(i=0;i<this.elements.length;i++){
+		addToggle(this.elements[i]);
+	}
+
+	function addToggle(obj){
+		var count = 0;
+		myAddEvent(obj, "click", function (){
+			_arguments[count%_arguments.length].call(obj);	//call的目的是为了能够让函数在执行的时候能找到this
+			count++;
+		});
+	}
 }
 
 //-------------------------

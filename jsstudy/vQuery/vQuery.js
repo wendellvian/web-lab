@@ -133,6 +133,10 @@ vQuery.prototype.toggle = function (){
 		});
 	}
 }
+//-----------------eq方法
+vQuery.prototype.eq = function (n){
+	return $(this.elements[n]);
+}
 
 //-------------------------
 function $(vArg){
